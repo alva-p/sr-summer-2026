@@ -25,7 +25,7 @@ hypothesis, test, or report. This checklist is the "trust but verify" layer refe
 ## For PoC-stage outputs (test skeletons)
 
 - [ ] Code compiles and runs as-is (after filling in target-specific details).
-- [ ] Every assertion reflects actual observed behavior, run locally — not an assumption carried
+- [ ] Every assertion reflects actual observed behavior, run locally, not an assumption carried
       over from the AI's suggestion.
 - [ ] Test passes/fails for the *reason* documented, not for an unrelated reason (e.g., a revert
       earlier in the call).

@@ -1,6 +1,6 @@
 # Prompt Library
 
-Generic, reusable prompts for each stage of [workflow.md](workflow.md). These are templates —
+Generic, reusable prompts for each stage of [workflow.md](workflow.md). These are templates,
 fill in the brackets with **abstracted** information per
 [safe-use-policy.md](safe-use-policy.md). None of these reference any specific program.
 

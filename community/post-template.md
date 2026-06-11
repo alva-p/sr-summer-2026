@@ -22,7 +22,7 @@ honest, and safe.
 - [ ] Contains **no** hypotheses, PoCs, or report content related to active research.
 - [ ] Generalized enough that the underlying lesson stands on its own (educational value without
       specifics).
-- [ ] Tone matches the project's positioning — useful and honest, not promising guaranteed results
+- [ ] Tone matches the project's positioning, useful and honest, not promising guaranteed results
       ("aiming for", not "will find").
 - [ ] If referencing a tool/template from this repo, the link works and the file is actually
       published.

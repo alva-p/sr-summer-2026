@@ -2,7 +2,7 @@
 
 This is the AI-assisted layer that runs alongside the main research pipeline (see
 [README methodology section](../README.md#methodology)). At every stage, AI is a collaborator that
-proposes, summarizes, and challenges — a human verifies before anything moves forward.
+proposes, summarizes, and challenges; a human verifies before anything moves forward.
 
 ```text
 Spec → Invariant → Adversary → PoC → Report
@@ -51,16 +51,16 @@ AI can transform "X should always hold" into general questions like:
 * "What if two operations are reordered or interleaved?"
 
 **Human verification:** each adversarial question is evaluated for whether the preconditions are
-actually reachable in scope. Most are ruled out quickly — that's expected and is itself a useful
+actually reachable in scope. Most are ruled out quickly: that's expected and is itself a useful
 output (see [methodology/hypothesis-template.md](../methodology/hypothesis-template.md)).
 
 ## 4. PoC
 
 **Goal:** turn a validated hypothesis into a reproducible demonstration.
 
-AI can help generate **test skeletons** — boilerplate setup, fixtures, helper functions.
+AI can help generate **test skeletons**: boilerplate setup, fixtures, helper functions.
 
-**Human verification — non-negotiable:**
+**Human verification (non-negotiable):**
 
 * Every test is run locally.
 * Every assertion is checked against the actual contract behavior, not assumed.
@@ -71,7 +71,7 @@ AI can help generate **test skeletons** — boilerplate setup, fixtures, helper 
 
 **Goal:** produce a report that survives a skeptical triager.
 
-AI can act as a **skeptical triager** on a draft report (using only generic descriptions — see
+AI can act as a **skeptical triager** on a draft report (using only generic descriptions, see
 [safe-use-policy.md](safe-use-policy.md)) and flag:
 
 * Unproven assumptions.

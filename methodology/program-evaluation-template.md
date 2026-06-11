@@ -1,7 +1,7 @@
 # Program Evaluation Template
 
 Fill this out **directly from the official Immunefi program page** before committing research time to
-a target. Do not copy information from memory, blog posts, or old notes — link the live page and date
+a target. Do not copy information from memory, blog posts, or old notes, link the live page and date
 the check.
 
 ---

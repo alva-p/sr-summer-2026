@@ -1,7 +1,7 @@
 # Public Contribution Log
 
 A running log of public contributions: posts, threads, Discord discussions, shared
-templates/tools, and notable engagement. Kept sanitized — links and one-line descriptions only, no
+templates/tools, and notable engagement. Kept sanitized, links and one-line descriptions only, no
 sensitive content. This is the source for the `public_contributions` count in
 [data/daily-metrics.csv](../data/daily-metrics.csv) and the evidence trail for **Best Community
 Contributor**.

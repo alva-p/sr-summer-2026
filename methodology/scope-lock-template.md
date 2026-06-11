@@ -1,10 +1,10 @@
 # Scope Lock Template
 
 A "scope lock" is a snapshot of exactly what you are allowed to look at, on which version, and under
-which rules — taken **once per research sprint** before deep work begins, so that scope drift and
+which rules, taken **once per research sprint** before deep work begins, so that scope drift and
 "but the docs said..." disputes are minimized.
 
-This file should be copied into your **private** workspace (`private/<target>/scope-lock.md`) — it
+This file should be copied into your **private** workspace (`private/<target>/scope-lock.md`), it
 will contain target-specific information that should not be published. This template itself stays
 generic.
 

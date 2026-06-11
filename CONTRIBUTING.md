@@ -24,7 +24,7 @@ Issues and PRs are welcome for:
 * General discussion about methodology, AI-assisted workflows, or SR Summer.
 
 Please **do not** open issues asking about or discussing specific vulnerabilities, in-scope targets,
-or pending reports — see [SECURITY_AND_DISCLOSURE.md](SECURITY_AND_DISCLOSURE.md). Such content will
+or pending reports, see [SECURITY_AND_DISCLOSURE.md](SECURITY_AND_DISCLOSURE.md). Such content will
 be removed.
 
 ## Style
@@ -44,4 +44,4 @@ make safety-check
 
 This runs a conservative scan for confidentiality red flags (see
 [scripts/safety_check.py](scripts/safety_check.py)). It does not guarantee that nothing sensitive is
-present — manual review is still required.
+present, manual review is still required.

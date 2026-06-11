@@ -60,13 +60,13 @@ screenshots-private/
 secrets.*
 ```
 
-* `targets/` — cloned target codebases.
-* `private/` — working notes, hypotheses, draft reports.
-* `pocs/` — proof-of-concept code for findings (disclosed or not).
-* `reports/` — report drafts and submitted reports.
-* `evidence/` — logs, traces, screenshots related to findings.
-* `studio/` — Immunefi Studio exports/notes.
-* `screenshots-private/` — any screenshot that might contain target or Studio details.
+* `targets/`, cloned target codebases.
+* `private/`, working notes, hypotheses, draft reports.
+* `pocs/`, proof-of-concept code for findings (disclosed or not).
+* `reports/`, report drafts and submitted reports.
+* `evidence/`, logs, traces, screenshots related to findings.
+* `studio/`, Immunefi Studio exports/notes.
+* `screenshots-private/`, any screenshot that might contain target or Studio details.
 
 If you need a new private category, add it to `.gitignore` **before** creating files in it.
 
@@ -77,7 +77,7 @@ Only after:
 1. The finding has been resolved/fixed and the program/Immunefi has confirmed it can be discussed, **or**
 2. The information is generic/educational enough that it doesn't reveal anything about a specific
    program's vulnerabilities (e.g., "rounding errors in share-price calculations are a common class of
-   bug" — with no reference to a real, unresolved instance).
+   bug", with no reference to a real, unresolved instance).
 
 When in doubt, don't publish it. A sanitized retrospective should describe the *process* (what was
 investigated, how, what was learned) without describing an exploitable issue in a live program.
@@ -95,7 +95,7 @@ public files only** and warns about:
 * Other patterns worth a manual look (e.g. long hex blobs, "0x" + 64 hex chars).
 
 **This check is conservative and intentionally simple.** It does not delete anything, and it
-**cannot guarantee** that nothing sensitive is present — it's a fast first pass, not a substitute for
+**cannot guarantee** that nothing sensitive is present. It's a fast first pass, not a substitute for
 manual review before every commit/push.
 
 Note: this file and `scripts/safety_check.py` itself are excluded from the marker-content scan,

@@ -21,13 +21,13 @@ methodological purposes only.
 This repo is where I plan, track, and publish my work as a security researcher during SR Summer 2026.
 It serves four purposes at once:
 
-1. **Personal planning and accountability system** — daily journal, weekly retrospectives, and a
+1. **Personal planning and accountability system**: daily journal, weekly retrospectives, and a
    campaign dashboard that I update as I go.
-2. **Public progress log** — an honest record of what I studied, tested, got wrong, and learned,
+2. **Public progress log**: an honest record of what I studied, tested, got wrong, and learned,
    without revealing anything confidential.
-3. **Technical portfolio** — case studies, templates, and tools that show how I work, for people
+3. **Technical portfolio**: case studies, templates, and tools that show how I work, for people
    evaluating me for Web3 security roles.
-4. **Reusable base for other researchers** — every template here is sanitized and empty by default,
+4. **Reusable base for other researchers**: every template here is sanitized and empty by default,
    so anyone can fork this structure for their own bounty/research workflow.
 
 ## Who I am
@@ -66,7 +66,7 @@ Priority areas:
 * Meet other researchers and build reputation.
 * Work toward Web3 security job opportunities.
 
-I'm aiming for **two or more confirmed/paid reports** during the campaign — but that's a stretch
+I'm aiming for **two or more confirmed/paid reports** during the campaign, but that's a stretch
 goal, not a guarantee. Success is also measured by process quality, technical depth, tests written,
 hypotheses correctly ruled out, reporting improvements, public contributions, consistency, and
 professional relationships built. See [methodology/](methodology/) for how each of these is tracked.
@@ -75,11 +75,11 @@ professional relationships built. See [methodology/](methodology/) for how each 
 
 This project is organized to produce real evidence for these SR Summer categories:
 
-* **Most Consistent Hunter** — sustained activity all campaign long, even on weeks without findings.
+* **Most Consistent Hunter**: sustained activity all campaign long, even on weeks without findings.
   Evidence: [journal/](journal/), [data/daily-metrics.csv](data/daily-metrics.csv).
-* **Best AI-Assisted Workflow** — a practical, honest workflow where AI helps without replacing human
+* **Best AI-Assisted Workflow**: a practical, honest workflow where AI helps without replacing human
   verification. See [ai-workflow/](ai-workflow/).
-* **Best Community Contributor** — public learnings, tools, templates and retrospectives, plus real
+* **Best Community Contributor**: public learnings, tools, templates and retrospectives, plus real
   interaction (not just broadcasting) on Twitter/X and Discord. See [community/](community/).
 
 ## Methodology
@@ -133,7 +133,7 @@ Standard weekly cadence (when the [ROADMAP](ROADMAP.md) doesn't say otherwise):
 
 > **Spec → Invariant → Adversary → PoC → Report**
 
-AI is used as a thinking and review aid — **never** as a replacement for human verification, and
+AI is used as a thinking and review aid, **never** as a replacement for human verification, and
 **never** fed an active vulnerability. Full policy and prompts: [ai-workflow/](ai-workflow/).
 
 | Stage | What AI can help with |
@@ -141,7 +141,7 @@ AI is used as a thinking and review aid — **never** as a replacement for human
 | Spec | Summarize public docs, enumerate components, propose diagrams, compare spec vs. implementation |
 | Invariant | Propose economic, authorization, state, temporal and cross-chain invariants |
 | Adversary | Turn invariants into general adversarial questions |
-| PoC | Generate test skeletons — always run and verified manually |
+| PoC | Generate test skeletons, always run and verified manually |
 | Report | Act as a skeptical triager: flag unproven assumptions, irreproducible steps, exaggerated impact, scope issues |
 
 ## What's public vs. what's never published

@@ -29,10 +29,10 @@ e.g. for any user, claimedAmount <= requestedAmount
 | Defined | Invariant written, not yet implemented as a test |
 | Implemented | Implemented in a fuzzing/invariant test suite |
 | Holds | Ran with no violations found (record run parameters) |
-| Violated — test bug | Failure traced to an issue in the test/handler, not the protocol |
-| Violated — wrong assumption | Failure traced to an incorrect assumption in this invariant |
-| Violated — documented behavior | Failure matches documented/expected behavior, not a bug |
-| Violated — potential hypothesis | Failure may indicate a real issue — promote to [hypothesis-template.md](hypothesis-template.md) |
+| Violated, test bug | Failure traced to an issue in the test/handler, not the protocol |
+| Violated, wrong assumption | Failure traced to an incorrect assumption in this invariant |
+| Violated, documented behavior | Failure matches documented/expected behavior, not a bug |
+| Violated, potential hypothesis | Failure may indicate a real issue, promote to [hypothesis-template.md](hypothesis-template.md) |
 
 * **Current status:**
 * **Run parameters** (runs, depth, seed if reproducible):
@@ -40,10 +40,10 @@ e.g. for any user, claimedAmount <= requestedAmount
 
 ## Categories reference
 
-* **Economic** — value conservation, solvency, share price monotonicity (under defined conditions),
+* **Economic**: value conservation, solvency, share price monotonicity (under defined conditions),
   fee bounds.
-* **Authorization** — only role X can call function Y; privilege escalation is impossible.
-* **State** — valid state transitions only; no unreachable or stuck states.
-* **Temporal** — ordering and timing constraints (e.g., a claim cannot happen before a request,
+* **Authorization**: only role X can call function Y; privilege escalation is impossible.
+* **State**: valid state transitions only; no unreachable or stuck states.
+* **Temporal**: ordering and timing constraints (e.g., a claim cannot happen before a request,
   cooldowns are respected).
-* **Cross-chain** — message integrity, replay protection, ordering, and consistency between chains.
+* **Cross-chain**: message integrity, replay protection, ordering, and consistency between chains.

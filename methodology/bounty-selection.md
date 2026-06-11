@@ -11,7 +11,7 @@ For each candidate program, score on these dimensions (1-5, 5 = best fit):
 |---|---|
 | Scope clarity | Are in-scope assets, impacts and exclusions clearly defined? |
 | Codebase quality | Modern tooling (Foundry/Hardhat), tests present, readable code |
-| Fit with specialization | Accounting, lending, cross-chain, vaults, oracles — see [README](../README.md#specialization) |
+| Fit with specialization | Accounting, lending, cross-chain, vaults, oracles, see [README](../README.md#specialization) |
 | Documentation quality | Docs, audits, specs available and up to date |
 | Activity/freshness | Program active, code not frozen/abandoned, recent commits |
 | Reward structure | Rewards proportional to expected effort, primacy of impact vs. rules is workable |
@@ -21,7 +21,7 @@ For each candidate program, score on these dimensions (1-5, 5 = best fit):
 ## Process
 
 1. Long-list candidates (from personal interest, community discussion, Immunefi explore page).
-2. For each candidate, fill out [program-evaluation-template.md](program-evaluation-template.md) —
+2. For each candidate, fill out [program-evaluation-template.md](program-evaluation-template.md):
    this re-validates current status directly on Immunefi (do not trust cached/old info).
 3. Score against the criteria above.
 4. Pick a primary and a secondary target; document the reasoning here.

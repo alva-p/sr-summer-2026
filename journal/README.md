@@ -12,9 +12,9 @@ Daily and weekly research journal for SR Summer 2026.
   and are generated/checked with `make weekly-summary` (see
   [scripts/weekly_summary.py](../scripts/weekly_summary.py)).
 
-All entries are sanitized by design — no target-specific or confidential information. See
+All entries are sanitized by design, no target-specific or confidential information. See
 [SECURITY_AND_DISCLOSURE.md](../SECURITY_AND_DISCLOSURE.md).
 
 ## Index
 
-* [Day 1 — 2026-06-10](day-01.md)
+* [Day 1, 2026-06-10](day-01.md)

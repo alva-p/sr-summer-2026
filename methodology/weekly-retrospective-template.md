@@ -2,11 +2,11 @@
 
 Filled out every Friday (see [ROADMAP.md](../ROADMAP.md) and the standard weekly cadence in the
 [README](../README.md#methodology)). The public version of this (in `journal/weekly/`) must contain
-no target-specific or confidential information — generalize where needed.
+no target-specific or confidential information, generalize where needed.
 
 ---
 
-## Week N — (date range)
+## Week N, (date range)
 
 ### Objective for the week
 
@@ -24,7 +24,7 @@ no target-specific or confidential information — generalize where needed.
 
 ### Metrics summary
 
-(pull from `data/daily-metrics.csv` for the week — see `make weekly-summary`)
+(pull from `data/daily-metrics.csv` for the week, see `make weekly-summary`)
 
 | Metric | Total |
 |---|---|
@@ -51,7 +51,7 @@ no target-specific or confidential information — generalize where needed.
 
 ### Public learning to share
 
-(one sanitized takeaway suitable for a tweet/post — see [community/post-template.md](../community/post-template.md))
+(one sanitized takeaway suitable for a tweet/post, see [community/post-template.md](../community/post-template.md))
 
 ### Blockers
 

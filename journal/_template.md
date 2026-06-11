@@ -1,4 +1,4 @@
-# Day {{DAY_NUMBER}} — {{DATE}} ({{WEEKDAY}})
+# Day {{DAY_NUMBER}}, {{DATE}} ({{WEEKDAY}})
 
 * **Campaign day:** {{DAY_NUMBER}} of 59 working days (SR Summer 2026: 2026-06-09 to 2026-08-31)
 * **Week:** {{WEEK_LABEL}}
@@ -22,11 +22,11 @@
 
 ## Tests / experiments
 
-* (unit tests, fuzz runs, invariant tests written or run today — generic descriptions)
+* (unit tests, fuzz runs, invariant tests written or run today, generic descriptions)
 
 ## Hypotheses generated
 
-* (generic descriptions — full details go in the private workspace, see
+* (generic descriptions, full details go in the private workspace, see
   [methodology/hypothesis-template.md](../methodology/hypothesis-template.md))
 
 ## Hypotheses discarded
@@ -40,7 +40,7 @@
 
 ## Human verification
 
-* (how today's AI-assisted outputs were verified — per
+* (how today's AI-assisted outputs were verified, per
   [ai-workflow/verification-checklist.md](../ai-workflow/verification-checklist.md))
 
 ## Public learnings
@@ -49,7 +49,7 @@
 
 ## Blockers
 
-* (anything blocking progress — technical, informational, or scheduling)
+* (anything blocking progress, technical, informational, or scheduling)
 
 ## Next step
 

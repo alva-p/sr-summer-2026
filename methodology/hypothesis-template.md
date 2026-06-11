@@ -13,7 +13,7 @@ and [data/weekly-metrics.csv](../data/weekly-metrics.csv).
 * **Date opened:**
 * **Related invariant(s):** (link to INV-XXX)
 * **Component(s) involved:**
-* **Summary:** (one paragraph — what could go wrong, in plain language)
+* **Summary:** (one paragraph, what could go wrong, in plain language)
 
 ## Adversarial framing
 
@@ -39,8 +39,8 @@ and [data/weekly-metrics.csv](../data/weekly-metrics.csv).
 ## Outcome
 
 * **Status:** open / validated / discarded
-* **If discarded — reason:** test bug / wrong assumption / documented behavior / out of scope /
+* **If discarded, reason:** test bug / wrong assumption / documented behavior / out of scope /
   duplicate / no real impact / other (explain)
-* **If validated — next step:** proceed to [poc-quality-gate.md](poc-quality-gate.md)
+* **If validated, next step:** proceed to [poc-quality-gate.md](poc-quality-gate.md)
 * **Date closed:**
-* **Public-safe learning** (one sentence, generic, suitable for the public journal — optional):
+* **Public-safe learning** (one sentence, generic, suitable for the public journal, optional):

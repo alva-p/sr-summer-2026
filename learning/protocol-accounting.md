@@ -1,8 +1,8 @@
 # Learning Notes: Protocol Accounting
 
-Working notes on share/vault accounting, valuation, fees, and rounding — priority areas 1-4 in the
+Working notes on share/vault accounting, valuation, fees, and rounding, priority areas 1-4 in the
 [README specialization](../README.md#specialization). This file accumulates **general** learnings
-(concepts, patterns, references) — not target-specific findings.
+(concepts, patterns, references), not target-specific findings.
 
 ## Topics to cover
 
@@ -22,11 +22,11 @@ Working notes on share/vault accounting, valuation, fees, and rounding — prior
 
 ## General learnings
 
-(Add dated, generic entries as they're learned — e.g. "2026-06-22 — rounding direction in
+(Add dated, generic entries as they're learned, e.g. "2026-06-22, rounding direction in
 `convertToShares` matters most at the boundary between zero and one share; worth checking on every
 new vault.")
 
 ## References
 
 (Links to public documentation, audit reports, articles, and educational resources used. Add as
-they're found — e.g. ERC-4626 spec, OpenZeppelin vault implementations, public post-mortems.)
+they're found, e.g. ERC-4626 spec, OpenZeppelin vault implementations, public post-mortems.)
