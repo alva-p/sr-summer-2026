@@ -15,8 +15,8 @@ unavailable) and prints warnings about:
   * a few other patterns worth a manual look
 
 This check is intentionally simple and conservative. It does NOT delete or
-modify anything, and it CANNOT guarantee that nothing sensitive is present —
-it is a fast first pass, not a substitute for manual review.
+modify anything, and it CANNOT guarantee that nothing sensitive is present.
+It is a fast first pass, not a substitute for manual review.
 """
 
 from __future__ import annotations

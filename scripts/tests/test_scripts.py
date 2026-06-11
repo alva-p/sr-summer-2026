@@ -64,7 +64,7 @@ class TestNewDay(unittest.TestCase):
         config = _lib.load_config()
         rendered, day_number = new_day.render_entry(config, _lib.parse_date("2026-06-10"))
         self.assertEqual(day_number, 1)
-        self.assertIn("Day 1 — 2026-06-10 (Wednesday)", rendered)
+        self.assertIn("Day 1, 2026-06-10 (Wednesday)", rendered)
         self.assertIn("Initial week", rendered)
 
     def test_render_entry_before_start_raises(self) -> None:
