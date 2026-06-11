@@ -1,0 +1,79 @@
+# SR Summer 2026 campaign configuration.
+# Used by scripts/campaign_status.py and scripts/new_day.py.
+
+campaign:
+  name: "Immunefi SR Summer 2026"
+  start_date: "2026-06-10"   # Project start date (formal kickoff, Day 1)
+  end_date: "2026-08-31"
+  timezone: "America/Argentina/Cordoba"
+  schedule_days_per_week: 5  # Monday-Friday work cadence
+
+researcher:
+  name: "alvap"
+  github: "alva-p"
+  positioning: "EVM Security Researcher focused on protocol accounting, DeFi integrations, invariant-based testing and cross-chain security."
+
+# Weekly objectives, used by scripts/campaign_status.py to show "this week's focus".
+# Week numbering starts at the initial week (week 0).
+weeks:
+  - id: 0
+    label: "Initial week"
+    range: "2026-06-10 to 2026-06-12"
+    objective: "Build the working system: structure, goals, metrics, preliminary targets."
+  - id: 1
+    label: "Week 1"
+    range: "2026-06-15 to 2026-06-19"
+    objective: "Technical onboarding of the primary target: scope lock, architecture map, trust boundaries."
+  - id: 2
+    label: "Week 2"
+    range: "2026-06-22 to 2026-06-26"
+    objective: "Understand Shares, Valuation and Fees. Define at least five invariants."
+  - id: 3
+    label: "Week 3"
+    range: "2026-06-29 to 2026-07-03"
+    objective: "Begin invariant testing: handlers, actors, preconditions, fuzzing, failure triage."
+  - id: 4
+    label: "Week 4"
+    range: "2026-07-06 to 2026-07-10"
+    objective: "Study redemption queues and temporal state. Build state-machine tests."
+  - id: 5
+    label: "Week 5"
+    range: "2026-07-13 to 2026-07-17"
+    objective: "Debt accounting and integrations. Investigate adversarial scenarios."
+  - id: 6
+    label: "Week 6"
+    range: "2026-07-20 to 2026-07-24"
+    objective: "First quality checkpoint: review hypotheses, apply PoC/report quality gates."
+  - id: 7
+    label: "Week 7"
+    range: "2026-07-27 to 2026-07-31"
+    objective: "Close first long sprint. Retrospective and decide the next target."
+  - id: 8
+    label: "Week 8"
+    range: "2026-08-03 to 2026-08-07"
+    objective: "Architecture mapping of the second target."
+  - id: 9
+    label: "Week 9"
+    range: "2026-08-10 to 2026-08-14"
+    objective: "Tests for the second target: deposits, withdrawals, solvency, liquidations, oracles."
+  - id: 10
+    label: "Week 10"
+    range: "2026-08-17 to 2026-08-21"
+    objective: "Validate highest-signal hypotheses. Publish methodology article and AI workflow."
+  - id: 11
+    label: "Week 11"
+    range: "2026-08-24 to 2026-08-28"
+    objective: "Finish strong: pending tests/reports, quality gates, repo cleanup, case studies."
+  - id: 12
+    label: "Closing"
+    range: "2026-08-31 to 2026-08-31"
+    objective: "Publish final SR Summer report, metrics, retrospective and next 90-day plan."
+
+# SR Summer 2026 recognition categories (Immunefi), used as a quick reference.
+recognition_categories:
+  - "Best New Researcher"
+  - "Best Community Contributor"
+  - "Most Consistent Hunter"
+  - "Best AI-Assisted Workflow"
+  - "Top Finishers"
+  - "Most Valid Submissions"

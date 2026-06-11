@@ -1,0 +1,28 @@
+# --- Private workspace (never publish) ---
+private/
+targets/
+reports/
+pocs/
+evidence/
+studio/
+screenshots-private/
+
+# --- Secrets ---
+.env
+.env.*
+*.key
+*.pem
+secrets.*
+
+# --- Common local artifacts ---
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+out/
+cache/
+broadcast/
+.idea/
+.vscode/

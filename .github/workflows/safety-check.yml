@@ -1,0 +1,23 @@
+name: Safety check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  safety-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run safety check
+        run: python3 scripts/safety_check.py
+
+      - name: Run script tests
+        run: python3 -m unittest discover -s scripts/tests
