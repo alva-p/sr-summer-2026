@@ -21,3 +21,4 @@ All entries are sanitized by design, no target-specific or confidential informat
 * [Day 2, 2026-06-11](day-02.md)
 * [Initial week retrospective](weekly/week-00.md)
 * [Day 3, 2026-06-12](day-03.md)
+* [Day 4, 2026-06-13](day-04.md)
