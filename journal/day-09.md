@@ -26,7 +26,8 @@ Cyfrin Updraft Smart Contract Security Auditor course (final sections) and Week 
   status, metrics summary, what worked, what did not work, AI workflow notes, and the plan for
   Week 2.
 * Posted a tweet marking the milestone (Cyfrin course done, Week 2 starting Monday, shifting
-  to active research on a live Immunefi program).
+  to active research on a live Immunefi program) — linked to the public achievements page as
+  proof: https://profiles.cyfrin.io/u/alvap/achievements/security
 * Updated private daily tracker.
 
 ## Tests / experiments

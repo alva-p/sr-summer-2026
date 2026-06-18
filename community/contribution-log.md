@@ -18,4 +18,4 @@ Contributor**.
 |---|---|---|---|---|
 | 2026-06-10 | Twitter/X | commitment | Posted SR Summer 2026 commitment, added banner and 🏖️ 💻 emojis | n/a |
 | 2026-06-10 | GitHub | repository | Created and published the `sr-summer-2026` tracking repository | https://github.com/alva-p/sr-summer-2026 |
-| 2026-06-18 | Twitter/X | post | Cyfrin smart contract security course completed; Week 2 starts Monday on a live Immunefi program | n/a |
+| 2026-06-18 | Twitter/X | post | Cyfrin smart contract security course completed; Week 2 starts Monday on a live Immunefi program | https://profiles.cyfrin.io/u/alvap/achievements/security |
