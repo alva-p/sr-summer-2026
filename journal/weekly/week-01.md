@@ -1,4 +1,4 @@
-# Week 1, 2026-06-15 to 2026-06-18
+# Week 1, 2026-06-15 to 2026-06-19
 
 ### Objective for the week
 
@@ -30,7 +30,11 @@ June 18 with one day of slack before Week 2.)
 * Hypotheses closed: 0 (the one bypass path traced on Day 6 was already ruled out on Day 2;
   no new discard, just a re-confirmation).
 * PoCs: none.
-* Reports: none (submitted report from Day 4 still pending triage response).
+* Reports: two triage responses received during the week. Both closed: one on Day 4's submission
+  (reason: out of scope or duplicate per earlier triage), one on Day 10 (reason: intentional
+  design distinction between manual and automation close paths in a perpetuals protocol; the
+  spread in the manual path is a trader execution cost, not a vault solvency gap). Two discarded
+  hypotheses logged.
 
 ### Metrics summary
 
@@ -43,9 +47,9 @@ June 18 with one day of slack before Week 2.)
 | Tests written | 0 |
 | Invariants defined | 0 |
 | Hypotheses investigated | 0 |
-| Hypotheses discarded | 0 |
+| Hypotheses discarded | 2 |
 | PoCs reproducible | 0 |
-| Public contributions | 3 |
+| Public contributions | 4 |
 
 ### What worked
 
