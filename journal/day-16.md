@@ -20,7 +20,7 @@ Continuing from Day 15:
 ## Time
 
 * **Planned:** ~2h
-* **Actual:**
+* **Actual:** ~2h
 
 ## Area studied
 
@@ -28,7 +28,8 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 
 ## Activities
 
-* Read `[redacted].sol` and `[redacted].sol` in full.
+* Read `[redacted].sol`, `[redacted].sol`, `[redacted].sol`, and the
+  relevant sections of `[redacted].sol` in full.
 * Mapped adversarial scenarios against all six formalized invariants, identifying the
   assumptions each one relies on and whether those assumptions are reachable from an
   unprivileged caller.
@@ -41,8 +42,16 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 
 ## Tests / experiments
 
-* None today (adversarial analysis session). Tests for the two edge cases carried forward
-  to next session.
+* Wrote `test/contracts/[redacted].t.sol` with 3 tests:
+  - `test_exitFee_recipientNonZero_creditsAlice`: baseline — alice receives fee value (10e18
+    value units) after execution; actor receives 990e6 net assets.
+  - `test_exitFee_recipientChangedToZeroMidFlight_feeIsBurned`: admin changes
+    `[redacted]` to `address(0)` between `[redacted]` and
+    `[redacted]`; totalValueOwed stays 0, alice gets 0, actor still
+    receives 990e6 (same net payout as baseline).
+  - `test_exitFee_userPayoutIsSymmetric`: confirms that changing the fee destination
+    (credited vs. burned) does not affect the user's asset payout.
+* All 3 tests pass (forge test, Solc 0.8.28).
 
 ## Hypotheses generated
 
@@ -94,6 +103,10 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 * A fee configuration asymmetry (some setters allow `address(0)`, others forbid it) is
   worth noting even when each setter has an explicit rationale. The inconsistency means
   operators need to understand the distinction to avoid inadvertent fee burning.
+* When testing "what happens if config changes mid-flight," write three tests: baseline
+  (normal path), mid-flight (changed path), and symmetry (what stays the same across
+  both). The symmetry test catches assumptions that are easy to miss when looking at each
+  case in isolation.
 
 ## Blockers
 
@@ -101,15 +114,19 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 
 ## Next step
 
-* Part 2: deep-dive on the share-price caching in `[redacted]` (read
-  `[redacted].get[redacted]()` and trace how the price is produced; confirm
-  whether any external manipulation path exists at the access-control level).
-* Part 3: write a unit test that exercises the fee recipient mid-flight scenario
-  (`[redacted]` changed from non-zero to `address(0)` between `[redacted]` and
-  `[redacted]`) and verify the "silent burn" behavior is exact and complete.
+Friday cadence: quality review, metrics, retrospective, public contribution, plan for
+next week.
+* Compile Week 2 metrics and update `data/daily-metrics.csv`.
+* Write the weekly retrospective (what was covered, what tests exist, open questions for
+  Week 3).
+* Prepare a sanitized public post about the adversarial mapping technique (or the
+  mid-flight config testing pattern) as the community contribution for the week.
+* Draft Week 3 plan: handlers, actors, preconditions, fuzzing depth.
 
 ## Confidentiality check
 
 - [x] This entry contains no active vulnerabilities, hypotheses tied to a specific in-scope
       contract, exploit sequences, PoCs, report content, or other information listed in
-      [SECURITY_AND_DISCLOSURE.md](../SECURITY_AND_DISCLOSURE.md).
+      [SECURITY_AND_DISCLOSURE.md](../SECURITY_AND_DISCLOSURE.md). The mid-flight fee
+      recipient scenario is a behavioral edge case confirmed to be documented behavior, not
+      an active vulnerability.
