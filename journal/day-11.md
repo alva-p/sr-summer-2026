@@ -16,7 +16,7 @@ understanding needed to define invariants on Monday.
 
 ## Area studied
 
-Scope lock re-validation; [redacted] [redacted] protocol documentation (share value update, fee system,
+Scope lock re-validation; protocol documentation (share value update, fee system,
 async deposit/redeem flow); `[redacted]` and `[redacted]` source code.
 
 ## Activities

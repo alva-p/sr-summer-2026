@@ -23,7 +23,7 @@ for the transfer-validator cluster (`[redacted]`, `[redacted]`,
 
 ## Activities
 
-* Re-validated the [redacted] [redacted] scope page on Immunefi: page shows ~25 items = 24 contracts +
+* Re-validated the scope page on Immunefi: page shows ~25 items = 24 contracts +
   1 Primacy of Impact policy entry (already documented in the June 11 lock as a non-contract
   entry). No new contracts added, no changes to impacts in scope, exclusions, or max bounty
   ($200k). Re-validation log entry added to `scope-lock.md`.

@@ -1,5 +1,5 @@
 program,role,status,date_checked,scope_clarity,codebase_quality,fit_specialization,documentation_quality,activity,reward_structure,time_fit,learning_value,total_score,decision
-[redacted] [redacted],primary_candidate,pending_revalidation,,,,,,,,,,,
+target-primary,primary_candidate,pending_revalidation,,,,,,,,,,,
 Twyne,secondary_candidate,pending_revalidation,,,,,,,,,,,
 Chainlink,stretch_candidate,not_started,,,,,,,,,,,
 TermMax V2,alternative_candidate,not_evaluated,,,,,,,,,,,
