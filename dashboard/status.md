@@ -5,19 +5,26 @@
 
 - **Campaign:** Immunefi SR Summer 2026 (2026-06-09 to 2026-08-31)
 - **Project start:** 2026-06-10
-- **Current phase:** Initial week, building the working system
+- **Current phase:** Week 3 — invariant testing expansion (cross-component invariants, adversarial actors, extended fuzzing)
 - **Target selection:** tracked privately (see [methodology/bounty-selection.md](../methodology/bounty-selection.md) for the public process). Specific candidates are not published before a report is submitted.
 
 ## Progress snapshot
 
+_Snapshot as of Day 19 (2026-06-28). Source: `data/daily-metrics.csv`. Run `make status`
+for the live computed summary._
+
 | Metric | Value |
 |---|---|
-| Reports submitted | 0 |
-| Reports valid | 0 |
+| Reports submitted | 1 |
+| Reports valid | 1 |
 | Reports paid | 0 |
-| Invariants defined | 0 |
-| PoCs reproducible | 0 |
-| Public contributions | 0 |
+| Invariants defined | 17 |
+| PoCs reproducible | 3 |
+| Public contributions | 11 |
+| Tests written | 33 |
+| Hypotheses investigated | 26 |
+| Hypotheses discarded | 27 |
+| Research time | 21h 30m |
 
 _Updated manually at the end of each week. See `data/weekly-metrics.csv` for the
 underlying numbers and `make weekly-summary` to regenerate the latest summary._

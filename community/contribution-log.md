@@ -20,3 +20,4 @@ Contributor**.
 | 2026-06-10 | GitHub | repository | Created and published the `sr-summer-2026` tracking repository | https://github.com/alva-p/sr-summer-2026 |
 | 2026-06-18 | Twitter/X | post | Cyfrin smart contract security course completed; Week 2 starts Monday on a live Immunefi program | https://profiles.cyfrin.io/u/alvap/achievements/security |
 | 2026-06-19 | Twitter/X | post | Day 10: second triage of SR Summer 2026 closed; lesson on path asymmetry vs. vault loss in perpetuals protocols | n/a |
+| 2026-06-27 | Twitter/X | post | Adversarial invariant-mapping technique: for each formalized invariant, ask what an attacker would need to be true to break it — this produces either a concrete attack surface or a confirmed trust boundary | n/a |
