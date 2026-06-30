@@ -20,17 +20,17 @@ Week 3 Day 2 plan (from Day 20 next step):
 
 ## Area studied
 
-Adversarial handler design and ghost-state integrity; interaction between ERC20 `[redacted]`
+Adversarial handler design and ghost-state integrity; interaction between the ERC20 share-transfer
 revert path and Foundry invariant accounting.
 
 ## Activities
 
 * Added `handler_[redacted]Adversarial` to `[redacted].sol`: a dedicated caller
-  (`makeAddr("adversary")`) with zero share balance attempts `[redacted]` with a bounded
-  non-zero `sharesAmount`. The handler has no early-exit balance guard — the revert is expected
-  to come from the protocol's `[redacted]`, not from a defensive skip in the handler.
+  with zero share balance attempts a redemption request with a bounded non-zero shares amount.
+  The handler has no early-exit balance guard — the revert is expected to come from the
+  protocol's internal share-transfer call, not from a defensive skip in the handler.
   Ghost state is updated only on the unexpected-success branch; the catch block is empty by
-  design, confirming that a revert from the protocol does not corrupt accounting.
+  design, confirming that a protocol revert does not corrupt accounting.
 * Verified `forge build --force` is clean (no warnings).
 * Ran the full invariant suite: 7/7 pass, 0 reverts, 0 discards.
   `handler_[redacted]Adversarial` was called ~18,000 times per invariant.
@@ -40,7 +40,7 @@ revert path and Foundry invariant accounting.
 * Full invariant suite (256 runs × 500 depth = 128,000 calls per invariant, 7 invariants):
   **7/7 pass, 0 violations, 0 discards**.
 * `handler_[redacted]Adversarial`: ~18,000 calls per invariant, zero succeeded
-  (as expected — `[redacted]` always reverts for a zero-balance caller).
+  (as expected — the share-transfer call always reverts for a zero-balance caller).
 * Discovered: `FOUNDRY_FUZZ_RUNS` controls fuzz tests only; invariant tests use
   `FOUNDRY_INVARIANT_RUNS`. The day-20 next-step note had the wrong env var name.
   The suite ran at Foundry's default (256 runs), not 2000. The result is still a valid
@@ -58,16 +58,16 @@ revert path and Foundry invariant accounting.
 
 ## AI usage
 
-* Read `[redacted].[redacted]` to confirm the revert path (`[redacted]`)
-  and design the adversarial handler accordingly.
+* Read the queue contract's redeem-request function to confirm the revert path and design
+  the adversarial handler accordingly.
 * Wrote `handler_[redacted]Adversarial` in `[redacted].sol`.
 * Drafted this journal entry.
 
 ## Human verification
 
-* Traced `[redacted]` in source: confirms the call reaches `[redacted]` before any
-  protocol-level revert for a zero-balance caller (`_shares > 0` passes, the `[redacted]`
-  is the first real gate for ownership).
+* Traced the redeem-request function in source: confirms the call reaches the internal
+  share-transfer before any protocol-level revert for a zero-balance caller (the zero-amount
+  guard passes; the share transfer is the first real gate).
 * Inspected the Foundry call-distribution table: `handler_[redacted]Adversarial` appears
   with ~18,000 calls per invariant and 0 reverts (try/catch absorbs the expected ERC20 revert
   at the handler level, so Foundry counts it as a non-revert call).
@@ -93,8 +93,8 @@ revert path and Foundry invariant accounting.
 ## Next step
 
 Wednesday July 1 plan:
-* Begin precision and rounding analysis on the redeem-queue execution path:
-  `[redacted].calcValueOfSharesAmount` and `[redacted].convertValueToAssetAmount`.
+* Begin precision and rounding analysis on the redeem-queue execution path: the value-to-shares
+  conversion helper and the asset amount conversion function in the valuation handler.
 * Identify the rounding direction (floor vs. ceil) and whether it consistently favors the vault.
 * Draft at least one invariant candidate: e.g., user assets out are always <= gross value due
   (no value leak toward the redeemer).
