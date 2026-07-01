@@ -1,7 +1,7 @@
 # Day 22, 2026-07-01 (Wednesday)
 
 * **Campaign day:** 22 of 83 (SR Summer 2026: 2026-06-09 to 2026-08-31)
-* **Week:** Week 3 (June 29 - July 3) - Invariant testing expansion
+* **Week:** Week 3 (June 29 to July 3), invariant testing expansion
 
 ## Objective
 
