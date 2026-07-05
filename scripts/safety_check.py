@@ -51,7 +51,29 @@ CONTENT_PATTERNS = [
     ("possible private key (0x + 64 hex chars)", re.compile(r"\b0x[a-fA-F0-9]{64}\b")),
     ("PEM private key block", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
     ("possible seed phrase / mnemonic reference", re.compile(r"\b(seed phrase|mnemonic|recovery phrase)\b", re.IGNORECASE)),
+    # A Solidity source/test filename in a public doc is almost always a leaked
+    # in-scope contract name. Target-agnostic, so it stays safe to publish here.
+    ("Solidity source/test filename in a public file", re.compile(r"\b[A-Z][A-Za-z0-9]*\.(?:sol|t\.sol)\b")),
 ]
+
+# Optional private denylist of exact target terms (contract/function names, the
+# program name). Kept in the gitignored private/ dir so this public script never
+# has to name the target. One term per line; blank lines and # comments ignored.
+DENYLIST_PATH = os.path.join(_lib.REPO_ROOT, "private", "target-denylist.txt")
+
+
+def load_denylist() -> list[str]:
+    try:
+        with open(DENYLIST_PATH, "r", encoding="utf-8") as f:
+            return [
+                line.strip() for line in f
+                if line.strip() and not line.lstrip().startswith("#")
+            ]
+    except OSError:
+        return []
+
+
+DENYLIST = load_denylist()
 
 TEXT_EXTENSIONS = {
     ".md", ".py", ".yaml", ".yml", ".csv", ".txt", ".json", ".sh", ".cfg", ".toml", "",
@@ -113,6 +135,10 @@ def check_content(path: str) -> list[str]:
                 for label, pattern in CONTENT_PATTERNS:
                     if pattern.search(line):
                         warnings.append(f"{path}:{lineno}: {label}")
+                low = line.lower()
+                for term in DENYLIST:
+                    if term.lower() in low:
+                        warnings.append(f"{path}:{lineno}: contains private denylist term")
     except OSError:
         pass
     return warnings

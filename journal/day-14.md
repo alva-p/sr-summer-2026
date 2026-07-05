@@ -24,20 +24,20 @@ fee accrual path verification for INV-FEE-01 scope.
 ## Activities
 
 * Traced the full redeem/withdrawal flow end-to-end across the cluster:
-  `[redacted]` (pulls shares into queue via `[redacted]`, writes `[redacted]`),
-  `[redacted]` (time-guarded, returns shares via `[redacted]`, deletes request),
-  `[redacted]` (snapshots share price once for the whole batch, settles exit
+  the redeem-request function (pulls shares into queue via the validated transferFrom, writes the request mapping),
+  the cancel function (time-guarded, returns shares via the validated transfer, deletes request),
+  the redeem-execution function (snapshots share price once for the whole batch, settles exit
   fee per request, burns gross shares, sends asset to controller).
 * Mapped which storage variables each path mutates and in what order. Key finding: the
-  share price is captured once at the top of `[redacted]` and reused for every
-  request in the batch; exit fee settlement calls `[redacted]()` again internally, but
-  since `[redacted]` is not updated during the loop, both reads return the same value
+  share price is captured once at the top of the redeem-execution function and reused for every
+  request in the batch; exit fee settlement calls the share-price read again internally, but
+  since the cached share value is not updated during the loop, both reads return the same value
   in the current implementation.
-* Created `test/invariants/handlers/[redacted].sol`: a bounded handler with five
-  fuzzer-callable actions (`handler_[redacted]`, `handler_[redacted]`,
-  `handler_[redacted]`, `handler_warpTime`, `handler_mintToActor`) and ghost
+* Created the redeem-queue handler: a bounded handler with five
+  fuzzer-callable actions (the request handler, the cancel handler,
+  the execute handler, the time-warp handler, the mint handler) and ghost
   variables tracking pending share totals, all request IDs, and fee recipient addresses.
-* Created `test/invariants/[redacted].t.sol` with the five formalized invariants
+* Created the redeem-queue invariant suite with the five formalized invariants
   fully wired (assertions in place, not placeholders):
   INV-QUEUE-01, INV-QUEUE-02, INV-FEE-01, INV-LASTID-01, INV-SUPPLY-01.
 * Ran the invariant suite: 256 runs x 128,000 calls per invariant, 5/5 pass, 0 reverts,
@@ -45,8 +45,8 @@ fee accrual path verification for INV-FEE-01 scope.
 * Reviewed the fee accrual path to confirm invariant scopes are correctly defined: exit
   fee uses share price at settlement time (not at request time); dynamic fees deduct
   unclaimed fees from the base before computing the rate
-  (`netValue = [redacted] - [redacted]`); `[redacted]` decreases both
-  `[redacted]` and `[redacted]` by the same delta, maintaining consistency.
+  (net value equals total positions value minus total fees owed); the fee-claim function decreases both
+  the per-user fees-owed mapping and the total-fees-owed accumulator by the same delta, maintaining consistency.
 
 ## Tests / experiments
 
@@ -66,15 +66,15 @@ fee accrual path verification for INV-FEE-01 scope.
 ## AI usage
 
 * Proposed the handler and invariant file structure and wrote both Solidity files.
-* Mapped the double call to `[redacted]()` in `[redacted]` (one at the top,
+* Mapped the double call to the share-price read in the redeem-execution function (one at the top,
   one inside fee settlement), and verified both reads return the same value given no
   state mutation in between.
 * Drafted this journal entry.
 
 ## Human verification
 
-* All flow mappings were verified by reading `[redacted].sol`,
-  `[redacted].sol`, `Shares.sol`, and `[redacted].sol` source directly.
+* All flow mappings were verified by reading the async redeem-queue contract,
+  the fee handler, the shares token contract, and the valuation handler source directly.
 * Invariant suite ran end-to-end locally with `FOUNDRY_FUZZ_RUNS=200`; build output and
   test results inspected before recording as passing.
 * The unused-variable compiler warning was identified and fixed before the final run.
@@ -89,7 +89,7 @@ fee accrual path verification for INV-FEE-01 scope.
   legitimate revert paths (e.g., zero-assets guard). Without try-catch, a single valid
   revert halts the entire invariant run.
 * The fee accounting invariant is only meaningful if the exit fee is non-zero in setUp.
-  With default zero-fee configuration the [redacted] accounting path is never exercised
+  With default zero-fee configuration the fee handler accounting path is never exercised
   and the invariant is vacuously true. Always configure fees when testing fee invariants.
 
 ## Blockers
@@ -102,7 +102,7 @@ Wednesday cadence: invariants, tests, fuzzing, state machines.
 * Increase `FOUNDRY_FUZZ_RUNS` to at least 2,000 and confirm no violations under heavier
   fuzzing.
 * Add the precise sum invariant for fee accounting:
-  `[redacted] == sum([redacted][u])` for all tracked recipients. Requires expanding
+  total fees owed equals the sum of per-user fees owed for all tracked recipients. Requires expanding
   the handler's recipient registry to cover management and performance fee recipients.
 * Begin mapping the redemption state machine (CREATED, CANCELABLE, EXECUTED, CANCELED)
   and write a state-machine test.

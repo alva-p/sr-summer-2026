@@ -5,8 +5,8 @@
 
 ## Objective
 
-Optional Sunday session. Goal: read `Shares.sol` and `[redacted].sol` in full with
-the same formula/invariant focus applied on Day 11 to `[redacted]` and `[redacted]`, and
+Optional Sunday session. Goal: read the shares token contract and the async redeem-queue contract in full with
+the same formula/invariant focus applied on Day 11 to the valuation handler and the fee handler, and
 formalize the eight invariant candidates from private notes into structured stubs ready to be
 implemented as Foundry tests on Monday.
 
@@ -17,13 +17,13 @@ implemented as Foundry tests on Monday.
 
 ## Area studied
 
-`Shares.sol` and `[redacted].sol` source code; invariant candidate formalization.
+the shares token contract and the async redeem-queue contract source code; invariant candidate formalization.
 
 ## Activities
 
-* Read `Shares.sol` in full with focus on the mint and burn formulas, total supply tracking, and
+* Read the shares token contract in full with focus on the mint and burn formulas, total supply tracking, and
   the relationship between share amounts and underlying asset amounts.
-* Read `[redacted].sol` in full with focus on the request/cancel/claim state machine,
+* Read the async redeem-queue contract in full with focus on the request/cancel/claim state machine,
   how pending redemptions are accounted, and what invariants govern the queue at each state
   transition.
 * Formalized the eight invariant candidates from private notes into structured stubs: each stub

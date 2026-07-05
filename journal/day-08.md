@@ -17,9 +17,9 @@ mapped on Day 6, and formal re-confirmation of the initial cluster for Week 2.
 ## Area studied
 
 Primary target: scope re-validation + architecture-map trust-boundary and data-flow extensions
-for the transfer-validator cluster (`[redacted]`, `[redacted]`,
-`[redacted]`, `[redacted]`) and utility/infra contracts (`Global`,
-`[redacted]`, `[redacted]`, `[redacted]`).
+for the transfer-validator cluster (the transfer-validator contract, an ownable address list,
+an owned-shares address list, the address-list base) and utility/infra contracts (the global config contract,
+a 1:1 price aggregator, the component beacon proxy, the storage-helpers library).
 
 ## Activities
 
@@ -27,17 +27,17 @@ for the transfer-validator cluster (`[redacted]`, `[redacted]`,
   1 Primacy of Impact policy entry (already documented in the June 11 lock as a non-contract
   entry). No new contracts added, no changes to impacts in scope, exclusions, or max bounty
   ($200k). Re-validation log entry added to `scope-lock.md`.
-* Extended `architecture-map.md` section 2 (Data flow): added the Shares
+* Extended `architecture-map.md` section 2 (Data flow): added the shares token contract
   transfer / compliance-list check path — `transfer`/`transferFrom` →
-  `__[redacted]` → `I[redacted].[redacted]` — and the key
-  bypass: `[redacted]`/`[redacted]` call OZ `_mint`/`_burn` directly, so the validator is never
+  the transfer-validation internal → the transfer validator — and the key
+  bypass: the internal mint function/the internal burn function call OZ `_mint`/`_burn` directly, so the validator is never
   invoked during deposit/redeem issuance or share-burning.
 * Extended `architecture-map.md` section 4 (Trust boundaries): added 3 new rows:
   1. Transfer-validator / compliance lists: who controls each list type and what the validator
      does and does not gate (issuance is uncontrolled).
-  2. `Global.owner` as the [redacted] root-of-trust: immediate control over
-     `[redacted].setImplementation()` for all deployed `[redacted]` proxies.
-  3. `[redacted].SHARES` binding: immutable at deploy time, the on-chain mechanism
+  2. the global owner as the ownable root-of-trust: immediate control over
+     the beacon factory's implementation setter for all deployed the depositor wallet proxies.
+  3. the shares beacon proxy binding: immutable at deploy time, the on-chain mechanism
      that locks each component to exactly one fund.
 * Added a Week 1 completion note to `architecture-map.md` section 6 (Open questions)
   confirming initial cluster for Week 2.
@@ -63,8 +63,8 @@ for the transfer-validator cluster (`[redacted]`, `[redacted]`,
 
 ## Human verification
 
-* Cross-checked the transfer-validator data-flow addition against the `Shares.sol`
-  `__[redacted]` / `[redacted]` / `[redacted]` call paths already traced on Day 6 and
+* Cross-checked the transfer-validator data-flow addition against the shares token contract
+  the transfer-validation internal / the internal mint function / the internal burn function call paths already traced on Day 6 and
   Day 2 (audit-session-01 hyp. #6 / asymmetry item 3) — no new content, only formalizing into
   the architecture-map sections.
 * Confirmed scope count reasoning: 25 page items = 24 contracts + 1 policy entry, consistent

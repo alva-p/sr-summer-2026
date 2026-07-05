@@ -9,7 +9,7 @@ Wednesday cadence: invariants, tests, fuzzing, state machines.
 Continued from Day 14:
 * Increase `FOUNDRY_FUZZ_RUNS` to at least 2,000 and confirm no violations under heavier fuzzing.
 * Add the precise sum invariant for fee accounting:
-  `[redacted] == sum([redacted][u])` for all tracked recipients. Requires expanding
+  total fees owed equals the sum of per-user fees owed for all tracked recipients. Requires expanding
   the handler's recipient registry to cover management and performance fee recipients.
 * Begin mapping the redemption state machine (CREATED, CANCELABLE, EXECUTED, CANCELED)
   and write a state-machine test.
@@ -28,19 +28,19 @@ formalization and unit-test coverage.
 
 * Confirmed the correct env var for invariant run count: `FOUNDRY_INVARIANT_RUNS` (not
   `FOUNDRY_FUZZ_RUNS`). Re-ran the suite with 2,000 runs per invariant.
-* Extended `[redacted].sol`:
+* Extended the redeem-queue handler:
   - Pre-registers exit, management, and performance fee recipients in the constructor so the
     fee sum invariant is non-trivial from the first fuzz call (not only after the first
-    `[redacted]`).
-  - Replaced the inline recipient registration block in `handler_[redacted]`
-    with the shared `[redacted]()` helper.
-  - Added `[redacted]()` view: iterates tracked recipients and sums their
-    `[redacted]()` values; used by INV-FEE-02.
-* Added `INV-FEE-02` to `[redacted].t.sol`:
-  `[redacted].[redacted]() == handler.[redacted]()`
-  This checks exact equality (stronger than INV-FEE-01's >= bound). [redacted] always
-  updates `[redacted]` and `[redacted][user]` with the same delta atomically.
-* Created `test/contracts/[redacted].t.sol` with 9 explicit state transition
+    the redeem-execution function).
+  - Replaced the inline recipient registration block in the execute handler
+    with the shared the fee-recipient registration internal helper.
+  - Added the ghost recipient-value sum view: iterates tracked recipients and sums their
+    the per-user value-owed getter values; used by INV-FEE-02.
+* Added `INV-FEE-02` to the redeem-queue invariant suite:
+  the fee handler's total value owed equals the ghost sum of per-recipient credited value
+  This checks exact equality (stronger than INV-FEE-01's >= bound). the fee handler always
+  updates the total-fees-owed accumulator and the per-user fees-owed entry with the same delta atomically.
+* Created the redeem-queue state-machine tests with 9 explicit state transition
   tests covering all valid and invalid paths of the implicit PENDING / CANCELABLE / SETTLED
   state machine.
 
@@ -53,7 +53,7 @@ formalization and unit-test coverage.
 
 ## Hypotheses generated
 
-* None with sufficient signal to log. INV-FEE-02 passing confirms [redacted]'s atomic
+* None with sufficient signal to log. INV-FEE-02 passing confirms the fee handler's atomic
   update pattern holds under heavy fuzzing; no anomaly found.
 
 ## Hypotheses discarded
@@ -63,8 +63,8 @@ formalization and unit-test coverage.
 ## AI usage
 
 * Proposed the handler extension design (pre-registration, shared helper, sum view).
-* Wrote `[redacted].sol` edits, `[redacted].t.sol` INV-FEE-02, and
-  the full `[redacted].t.sol`.
+* Wrote the redeem-queue handler edits, the redeem-queue invariant suite INV-FEE-02, and
+  the full redeem-queue state-machine tests.
 * Identified that `FOUNDRY_FUZZ_RUNS` does not control invariant run count
   (`FOUNDRY_INVARIANT_RUNS` does).
 * Drafted this journal entry.
@@ -72,12 +72,12 @@ formalization and unit-test coverage.
 ## Human verification
 
 * All source files read directly before writing any test code.
-* State machine transitions derived by reading `[redacted].sol` source, not
+* State machine transitions derived by reading the async redeem-queue contract source, not
   assumed from documentation.
 * Both test suites compiled clean and ran locally before recording results.
-* The SETTLED + [redacted] revert path (ZeroAssets) was verified by reading
-  `[redacted]` source: deleted request has `sharesAmount == 0`, leading to
-  `valueDue == 0` and `userAssets == 0`, which triggers the ZeroAssets guard.
+* The SETTLED + the redeem-execution function revert path (a zero-assets revert) was verified by reading
+  the redeem-execution function source: deleted request has `sharesAmount == 0`, leading to
+  `valueDue == 0` and `userAssets == 0`, which triggers the a zero-assets revert guard.
 
 ## Public learnings
 
@@ -86,10 +86,10 @@ formalization and unit-test coverage.
   uses both.
 * An implicit state machine (no enum, state derived from storage fields) can still be
   tested explicitly by reading the relevant fields and asserting derived state after each
-  operation. Naming helpers `_assertPending`, `_assertCancelable`, `_assertSettled` makes
+  operation. Naming helpers the pending-state assertion, the cancelable-state assertion, the settled-state assertion makes
   each test self-documenting.
 * Executing an already-settled redemption request does not silently succeed: it reverts with
-  `ZeroAssets` because the deleted request has `sharesAmount == 0`. This is a useful
+  a zero-assets revert because the deleted request has `sharesAmount == 0`. This is a useful
   protocol property to verify explicitly.
 
 ## Blockers
@@ -101,10 +101,10 @@ formalization and unit-test coverage.
 Thursday cadence: adversarial scenarios, hypothesis validation, PoCs.
 * Map adversarial scenarios against the five formalized invariants (which assumptions could
   a malicious actor exploit to violate them?).
-* Review whether the share-price caching in `[redacted]` (captured once per
+* Review whether the share-price caching in the redeem-execution function (captured once per
   batch, not per request) creates any exploitable ordering assumption.
-* Explore whether a fee recipient set to `address(0)` in mid-flight (between [redacted]
-  and [redacted]) can cause fee value to be silently burned rather than credited.
+* Explore whether a fee recipient set to `address(0)` in mid-flight (between the redeem-request function
+  and the redeem-execution function) can cause fee value to be silently burned rather than credited.
 
 ## Confidentiality check
 

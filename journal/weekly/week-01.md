@@ -10,16 +10,16 @@ June 18 with one day of slack before Week 2.)
 ### What I did
 
 * Architecture / reading: read all 7 remaining in-scope source files not yet covered in the
-  initial audit sessions (transfer-validator cluster: `[redacted]`,
-  `[redacted]`, `[redacted]`, `[redacted]`; utility/infra: `Global`,
-  `[redacted]`, `[redacted]`, `[redacted]`). All 24 in-scope contracts
+  initial audit sessions (transfer-validator cluster: the transfer-validator contract,
+  an ownable address list, an owned-shares address list, the address-list base; utility/infra: the global config contract,
+  a 1:1 price aggregator, the component beacon proxy, the storage-helpers library). All 24 in-scope contracts
   are now represented in the architecture map.
 * AI workflow infrastructure: built the `solodit-vault` external findings corpus from scratch
   (266 methodology checks and 269 EVM findings across 15 sectors) and wired two integration
   points into the `alva-audit` agent (pre-audit context injection and raw-finding intake).
-* Architecture map extensions: added the Shares transfer/compliance-list check data-flow path
-  and three new trust-boundary rows (`[redacted]` / compliance lists,
-  `Global.owner` as [redacted] root-of-trust, `[redacted].SHARES` immutable binding).
+* Architecture map extensions: added the shares token contract transfer/compliance-list check data-flow path
+  and three new trust-boundary rows (the transfer-validator contract / compliance lists,
+  the global owner as the ownable root-of-trust, the shares beacon proxy immutable binding).
 * Scope re-validation: confirmed scope page shows the same 25 items as the June 11 snapshot
   (24 contracts + 1 Primacy of Impact policy entry). No changes. Re-validation log added to
   `scope-lock.md`.
@@ -100,10 +100,10 @@ None.
 
 ### Plan for next week
 
-* Week 2 objective (per campaign roadmap): understand Shares, Valuation and Fees in depth;
+* Week 2 objective (per campaign roadmap): understand the shares token contract, Valuation and Fees in depth;
   define at least five invariants for the initial cluster.
 * Starting point: architecture map and trust-boundary notes already complete for the full
-  24-contract scope; initial cluster (Shares/Valuation/Fees) already confirmed on Day 8.
+  24-contract scope; initial cluster (the shares token contract/Valuation/Fees) already confirmed on Day 8.
 * Expected daily rhythm: read source files for the cluster in depth, trace accounting paths,
   draft invariant candidates, verify against tests.
 * No adjustments to [ROADMAP.md](../../ROADMAP.md) required; Week 1 objectives fully met.

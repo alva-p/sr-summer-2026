@@ -85,7 +85,7 @@ Published on Twitter/X as part of the SR Summer community thread (Week 2 reflect
 
 Week 3 starts Monday June 29. Objective: invariant testing expansion.
 * Implement the handler extension: add deposit entry, share minting, and entrance-fee
-  settlement to the existing `[redacted]`.
+  settlement to the existing redeem-queue handler.
 * Write the cross-component invariant: pending queue shares never exceed total share supply.
 * Introduce the adversarial actor: a caller with no shares attempting to request redemption.
 * Run the extended invariant suite and classify any failures.

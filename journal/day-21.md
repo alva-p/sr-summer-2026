@@ -25,7 +25,7 @@ revert path and Foundry invariant accounting.
 
 ## Activities
 
-* Added `handler_[redacted]Adversarial` to `[redacted].sol`: a dedicated caller
+* Added the adversarial request handler to the redeem-queue handler: a dedicated caller
   with zero share balance attempts a redemption request with a bounded non-zero shares amount.
   The handler has no early-exit balance guard — the revert is expected to come from the
   protocol's internal share-transfer call, not from a defensive skip in the handler.
@@ -33,13 +33,13 @@ revert path and Foundry invariant accounting.
   design, confirming that a protocol revert does not corrupt accounting.
 * Verified `forge build --force` is clean (no warnings).
 * Ran the full invariant suite: 7/7 pass, 0 reverts, 0 discards.
-  `handler_[redacted]Adversarial` was called ~18,000 times per invariant.
+  the adversarial request handler was called ~18,000 times per invariant.
 
 ## Tests / experiments
 
 * Full invariant suite (256 runs × 500 depth = 128,000 calls per invariant, 7 invariants):
   **7/7 pass, 0 violations, 0 discards**.
-* `handler_[redacted]Adversarial`: ~18,000 calls per invariant, zero succeeded
+* the adversarial request handler: ~18,000 calls per invariant, zero succeeded
   (as expected — the share-transfer call always reverts for a zero-balance caller).
 * Discovered: `FOUNDRY_FUZZ_RUNS` controls fuzz tests only; invariant tests use
   `FOUNDRY_INVARIANT_RUNS`. The day-20 next-step note had the wrong env var name.
@@ -60,7 +60,7 @@ revert path and Foundry invariant accounting.
 
 * Read the queue contract's redeem-request function to confirm the revert path and design
   the adversarial handler accordingly.
-* Wrote `handler_[redacted]Adversarial` in `[redacted].sol`.
+* Wrote the adversarial request handler in the redeem-queue handler.
 * Drafted this journal entry.
 
 ## Human verification
@@ -68,14 +68,14 @@ revert path and Foundry invariant accounting.
 * Traced the redeem-request function in source: confirms the call reaches the internal
   share-transfer before any protocol-level revert for a zero-balance caller (the zero-amount
   guard passes; the share transfer is the first real gate).
-* Inspected the Foundry call-distribution table: `handler_[redacted]Adversarial` appears
+* Inspected the Foundry call-distribution table: the adversarial request handler appears
   with ~18,000 calls per invariant and 0 reverts (try/catch absorbs the expected ERC20 revert
   at the handler level, so Foundry counts it as a non-revert call).
 * Confirmed 7/7 invariants pass before writing results.
 
 ## Public learnings
 
-* Adversarial handler design rule: do NOT guard `handler_[redacted]Adversarial` with
+* Adversarial handler design rule: do NOT guard the adversarial request handler with
   `if (balance == 0) return`. The point is to let the protocol's own access control be the
   gate. If you skip in the handler, you're not testing whether the protocol rejects the call;
   you're just skipping the test entirely.

@@ -17,7 +17,7 @@ understanding needed to define invariants on Monday.
 ## Area studied
 
 Scope lock re-validation; protocol documentation (share value update, fee system,
-async deposit/redeem flow); `[redacted]` and `[redacted]` source code.
+async deposit/redeem flow); the valuation handler and the fee handler source code.
 
 ## Activities
 
@@ -26,10 +26,10 @@ async deposit/redeem flow); `[redacted]` and `[redacted]` source code.
   bounty. Scope lock remains current.
 * Read the protocol docs covering the share value update flow, fee settlement mechanics, async
   deposit and redeem flow, and the fee system architecture.
-* Re-read `[redacted].sol` and `[redacted].sol` in full with focus on formulas and
+* Re-read the valuation handler and the fee handler in full with focus on formulas and
   invariant surface, in preparation for Week 2 invariant definition.
 * Identified eight invariant candidates for the initial cluster (logged in private notes).
-* Read `[redacted].sol` to confirm the management fee formula and
+* Read the management-fee tracker to confirm the management fee formula and
   the initialization guard behavior.
 
 ## Tests / experiments
@@ -76,8 +76,8 @@ async deposit/redeem flow); `[redacted]` and `[redacted]` source code.
 Week 2 starts Monday June 22. Objective: understand Shares, Valuation and Fees in depth.
 Monday cadence: planning, scope, architecture, documentation. Specific actions:
 * Formalize the eight invariant candidates into Foundry test stubs.
-* Read `Shares.sol` and `[redacted].sol` in full with the same formula/invariant
-  focus applied today to `[redacted]` and `[redacted]`.
+* Read the shares token contract and the async redeem-queue contract in full with the same formula/invariant
+  focus applied today to the valuation handler and the fee handler.
 * Define at least five invariants with function and state mappings per the Week 2 roadmap goal.
 
 ## Confidentiality check

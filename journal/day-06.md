@@ -17,17 +17,17 @@ map's component inventory to cover the full 24-contract scope.
 ## Area studied
 
 Primary target: the remaining infra / compliance-list / utility components of the in-scope
-asset list — the shares-transfer-validator cluster (`[redacted]`,
-`[redacted]`, `[redacted]`, `[redacted]`) plus four small standalone
-utility/infra contracts (`Global`, `[redacted]`, `[redacted]`,
-`[redacted]`).
+asset list — the shares-transfer-validator cluster (the transfer-validator contract,
+an ownable address list, an owned-shares address list, the address-list base) plus four small standalone
+utility/infra contracts (the global config contract, a 1:1 price aggregator, the component beacon proxy,
+the storage-helpers library).
 
 ## Activities
 
 * Read all 7 remaining source files in full.
-* Traced `Shares.transfer`/`transferFrom` -> `__[redacted]` ->
-  `I[redacted].[redacted]` to confirm how
-  `[redacted]` plugs into `Shares`, and confirmed `[redacted]`/`[redacted]`
+* Traced the shares-token transfer/`transferFrom` -> the transfer-validation internal ->
+  the transfer validator to confirm how
+  the transfer-validator contract plugs into the shares token contract, and confirmed the internal mint function/the internal burn function
   call OZ `_mint`/`_burn` directly (no validator hook) — cross-checked this against Day 2's
   audit session notes, which already identified and ruled out this exact bypass as a
   compliance-list edge case with no in-scope impact (no new hypothesis).
@@ -54,15 +54,15 @@ utility/infra contracts (`Global`, `[redacted]`, `[redacted]`,
 
 * Reading the 7 remaining source files and drafting the new architecture-map table entries
   (component role, upgradeability, privileged roles, notes).
-* Tracing the `Shares` transfer/mint/burn call paths to check how the transfer validator is
+* Tracing the shares token contract transfer/mint/burn call paths to check how the transfer validator is
   wired in.
 * Cross-referencing the trace result against existing Day 2 audit session notes.
 
 ## Human verification
 
 * Read each of the 7 source files directly rather than relying on the drafted table summaries.
-* Verified the `[redacted]`/`[redacted]` bypass claim by grepping `Shares.sol` for
-  `[redacted]`/`[redacted]`/`_mint`/`_burn` and reading the relevant lines directly, then confirmed
+* Verified the internal mint function/the internal burn function bypass claim by grepping the shares token contract for
+  the internal mint function/the internal burn function/`_mint`/`_burn` and reading the relevant lines directly, then confirmed
   against `audit-session-01-notes.md` hyp. #6 and `asymmetry-session-notes.md` item 3 that this
   was already identified and ruled out.
 
@@ -83,7 +83,7 @@ utility/infra contracts (`Global`, `[redacted]`, `[redacted]`,
 Continue Week 1 onboarding: with the full 24-contract component inventory now in place, the
 remaining Week 1 goals are completing the scope lock's remaining open items, building out the
 data-flow/trust-boundary sections for the newly-mapped components where relevant, and choosing
-(re-confirming) the small initial cluster for deeper Week 2 (Shares/Valuation/Fees) work.
+(re-confirming) the small initial cluster for deeper Week 2 (the shares token contract/Valuation/Fees) work.
 
 ## Confidentiality check
 

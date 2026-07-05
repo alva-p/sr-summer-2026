@@ -10,11 +10,11 @@ Continuing from Day 15:
 * Map adversarial scenarios against the five formalized invariants. For each invariant,
   identify which assumptions a malicious actor would need to violate it and whether those
   assumptions are reachable given the protocol's access control.
-* Review the share-price caching in `[redacted]`: the share price is captured
+* Review the share-price caching in the redeem-execution function: the share price is captured
   once per batch call, not per individual request. Determine whether this creates any
   exploitable ordering assumption or price-snapshot risk.
 * Explore whether setting a fee recipient to `address(0)` mid-flight (between
-  `[redacted]` and `[redacted]`) can cause fee value to be silently burned
+  the redeem-request function and the redeem-execution function) can cause fee value to be silently burned
   rather than credited to a valid address.
 
 ## Time
@@ -28,28 +28,28 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 
 ## Activities
 
-* Read `[redacted].sol`, `[redacted].sol`, `[redacted].sol`, and the
-  relevant sections of `[redacted].sol` in full.
+* Read the async redeem-queue contract, the fee handler, the value-helpers library, and the
+  relevant sections of the valuation handler in full.
 * Mapped adversarial scenarios against all six formalized invariants, identifying the
   assumptions each one relies on and whether those assumptions are reachable from an
   unprivileged caller.
 * Noted an access-control asymmetry between entrance/exit fee setters and management/
-  performance fee setters: `[redacted]` and `[redacted]` allow `recipient = address(0)`
-  without validation, while `[redacted]` and `[redacted]` enforce
+  performance fee setters: the exit-fee setter and the entrance-fee setter allow `recipient = address(0)`
+  without validation, while the management-fee setter and the performance-fee setter enforce
   `require(_recipient != address(0))`. This is consistent with the documented "burned if
   `address(0)`" behavior, but creates a risk of silent fee burning mid-flight if the admin
-  changes the recipient between `[redacted]` and `[redacted]`.
+  changes the recipient between the redeem-request function and the redeem-execution function.
 
 ## Tests / experiments
 
-* Wrote `test/contracts/[redacted].t.sol` with 3 tests:
-  - `test_exitFee_recipientNonZero_creditsAlice`: baseline — alice receives fee value (10e18
+* Wrote a mid-flight fee-recipient test file with 3 tests:
+  - the baseline fee-credit test: baseline — alice receives fee value (10e18
     value units) after execution; actor receives 990e6 net assets.
-  - `test_exitFee_recipientChangedToZeroMidFlight_feeIsBurned`: admin changes
-    `[redacted]` to `address(0)` between `[redacted]` and
-    `[redacted]`; totalValueOwed stays 0, alice gets 0, actor still
+  - the mid-flight fee-burn test: admin changes
+    the exit-fee recipient to `address(0)` between the redeem-request function and
+    the redeem-execution function; the value-owed accumulator stays 0, alice gets 0, actor still
     receives 990e6 (same net payout as baseline).
-  - `test_exitFee_userPayoutIsSymmetric`: confirms that changing the fee destination
+  - the payout-symmetry test: confirms that changing the fee destination
     (credited vs. burned) does not affect the user's asset payout.
 * All 3 tests pass (forge test, Solc 0.8.28).
 
@@ -61,20 +61,20 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 
 ## Hypotheses discarded
 
-* H-ORDERING: share-price caching in `[redacted]` creates an exploitable
+* H-ORDERING: share-price caching in the redeem-execution function creates an exploitable
   ordering assumption within a batch. Discarded: category "wrong assumption". The price
   is fixed once per batch call by design; the admin controls execution timing and ordering,
   so no unprivileged actor can exploit intra-batch price snapshots.
 * H-QUEUE02-BYPASS: an active request could end up with `sharesAmount == 0` while
   `controller != address(0)`. Discarded: category "documented behavior / impossible path".
-  `[redacted]` deletes the entire struct atomically; no function modifies
+  the request-removal internal deletes the entire struct atomically; no function modifies
   `sharesAmount` independently.
 
 ## AI usage
 
 * Proposed the adversarial mapping framework (invariant, assumption needed to violate,
   access-control check, verdict).
-* Analyzed `[redacted].sol` and `[redacted].sol` and produced the mapping table.
+* Analyzed the async redeem-queue contract and the fee handler and produced the mapping table.
 * Identified the entrance/exit fee recipient = `address(0)` asymmetry vs. management/
   performance fee setters.
 * Drafted this journal entry.
@@ -82,11 +82,11 @@ Adversarial scenario analysis; share-price caching review; fee-recipient edge ca
 ## Human verification
 
 * All source files read directly before analysis. Invariant-to-code mapping verified
-  line-by-line against `[redacted]`, `[redacted]`,
-  `[redacted]`, and `[redacted]`.
-* The `[redacted]` and `[redacted]` signatures compared directly to confirm the
+  line-by-line against the redeem-execution function, the fee-settlement internal,
+  the request-removal internal, and the redeem-request function.
+* The exit-fee setter and the management-fee setter signatures compared directly to confirm the
   asymmetric validation.
-* The "burned if `address(0)`" comment in `[redacted]` struct verified as the
+* The "burned if `address(0)`" comment in the fee-handler storage struct verified as the
   authoritative design intent for this behavior.
 
 ## Public learnings

@@ -8,7 +8,7 @@ June 26 as Day 17.)
 
 ### What I did
 
-* Architecture / reading: read `Shares.sol` and `[redacted].sol` in full on the
+* Architecture / reading: read the shares token contract and the async redeem-queue contract in full on the
   optional Sunday bridge session (Day 12), focusing on mint/burn formulas, total supply
   tracking, and the request/cancel/claim state machine. All contract source readings done in
   the Week 2 session were re-reads for invariant and adversarial analysis, not new contracts.
@@ -16,11 +16,11 @@ June 26 as Day 17.)
   the five strongest and wrote formal definitions with function and state mappings (Day 13).
   Added a sixth precise sum invariant (INV-FEE-02) on Day 15. Total: 6 invariants defined this
   week.
-* Test suite: implemented eight Foundry test skeletons (Day 13); implemented [redacted]
-  and [redacted].t.sol with all five invariants fully wired and passing (Day 14);
+* Test suite: implemented eight Foundry test skeletons (Day 13); implemented the redeem-queue handler
+  and the redeem-queue invariant suite with all five invariants fully wired and passing (Day 14);
   extended the handler with pre-registered fee recipients and a ghost sum view, added INV-FEE-02,
-  and wrote [redacted].t.sol with 9 state transition unit tests (Day 15). Added
-  [redacted].t.sol with 3 targeted tests for the mid-flight recipient change scenario
+  and wrote the redeem-queue state-machine tests with 9 state transition unit tests (Day 15). Added
+  the mid-flight fee-recipient tests with 3 targeted tests for the mid-flight recipient change scenario
   (Day 16). Total: 26 tests written this week.
 * Invariant fuzzing: ran the full 6-invariant suite at 256 runs (Day 14) and then at 2,000 runs
   (Day 15); 0 violations, 0 reverts, 0 discards.
@@ -30,7 +30,7 @@ June 26 as Day 17.)
 * Hypotheses opened: 0.
 * Hypotheses closed: 2 discarded (H-ORDERING: wrong assumption; H-QUEUE02-BYPASS: impossible
   path from documented behavior).
-* PoCs: 0 with exploitable signal. The [redacted] tests confirmed a documented
+* PoCs: 0 with exploitable signal. The mid-flight fee-recipient tests tests confirmed a documented
   behavioral edge case, not a vulnerability.
 * Reports: 1 High severity triage confirmation received on Day 13 (external platform, separate
   from this primary target). No new submissions on the primary target this week.

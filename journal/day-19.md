@@ -69,7 +69,7 @@ Campaign administration: metrics, dashboard, contribution log, Week 3 planning.
 
 Monday June 29:
 * Implement the handler extension: add deposit-entry, share-minting, and entrance-fee-settlement
-  functions to the existing [redacted] (stub was scoped on Day 18).
+  functions to the existing redeem-queue handler (stub was scoped on Day 18).
 * Wire the cross-component invariant stub: pending redemption shares cannot exceed total share
   supply.
 

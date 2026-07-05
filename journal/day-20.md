@@ -7,8 +7,8 @@
 
 Monday cadence: architecture, planning, implementation.
 Week 3 Day 1 plan (from Day 19 next step):
-* Implement the handler extension: add `handler_deposit`, `handler_mint`, and
-  `handler_entranceFeeSettlement` (or equivalent) to the existing `[redacted]`.
+* Implement the handler extension: add the deposit handler, the mint handler, and
+  the entrance-fee settlement handler (or equivalent) to the existing redeem-queue handler.
 * Wire the cross-component invariant: pending redemption shares never exceed total share supply.
 
 ## Time
@@ -18,28 +18,28 @@ Week 3 Day 1 plan (from Day 19 next step):
 
 ## Area studied
 
-Invariant handler extension: `[redacted]` deposit path (asset transfer, share minting,
+Invariant handler extension: the sync-deposit handler deposit path (asset transfer, share minting,
 entrance-fee settlement); cross-component share conservation across deposit and redeem lifecycle.
 
 ## Activities
 
-* Read `[redacted]` source end-to-end to map the deposit path: asset rate lookup,
+* Read the sync-deposit handler source end-to-end to map the deposit path: asset rate lookup,
   gross-share computation, entrance-fee settlement (records value owed to recipient — does not
-  mint fee shares), net-share mint via `shares.[redacted]`, asset pull from depositor to `Shares`.
-* Read `[redacted].[redacted]` to confirm fee shares are not minted:
-  only `[redacted]` is called, so fee recipients never appear in `balanceOf`.
-* Extended `[redacted]` with `handler_deposit`: deploys the full `[redacted]`
+  mint fee shares), net-share mint via the shares mint, asset pull from depositor to the shares token contract.
+* Read the entrance-fee settlement internal to confirm fee shares are not minted:
+  only the value-owed increment internal is called, so fee recipients never appear in `balanceOf`.
+* Extended the redeem-queue handler with the deposit handler: deploys the full sync-deposit handler
   path — deals asset to actor, approves deposit handler, refreshes rate + share price, registers
-  entrance-fee recipient, calls `depositHandler.deposit(assetAmount)` with try/catch.
-* Added `[redacted]Harness` state variable and constructor parameter to the handler.
-* Pre-registered `[redacted]()` in the handler constructor alongside the existing
+  entrance-fee recipient, calls the deposit handler with try/catch.
+* Added the sync-deposit handler harness state variable and constructor parameter to the handler.
+* Pre-registered the entrance-fee-recipient getter in the handler constructor alongside the existing
   exit/management/performance fee recipients.
-* Updated `[redacted].t.sol` setUp: deployed and initialized `[redacted]Harness`,
-  registered it as a deposit handler in `Shares`, disabled the staleness guard
-  (`[redacted](type(uint24).max)`) so time warps don't block deposits, set 0.5%
-  entrance fee with a dedicated `[redacted]`.
+* Updated the redeem-queue invariant suite setUp: deployed and initialized the sync-deposit handler harness,
+  registered it as a deposit handler in the shares token contract, disabled the staleness guard
+  (the staleness setter (set to max)) so time warps don't block deposits, set 0.5%
+  entrance fee with a dedicated entrance-fee recipient.
 * Added `INV-CROSS-01` (`invariant_cross_sharesFullyAccountedFor`): exact equality
-  `shares.totalSupply() == sum(actorBalances) + shares.balanceOf(redeemQueue)`.
+  total share supply equals the sum of actor balances plus the queue's held balance.
   Rationale: the handler models the full share lifecycle; entrance fees do not mint shares, so
   every share in supply must be held by a tracked actor or sitting in the queue.
 
@@ -47,7 +47,7 @@ entrance-fee settlement); cross-component share conservation across deposit and 
 
 * Compiled clean (no warnings) with `forge build --force`.
 * Ran full suite at 256 runs × 128,000 calls per invariant: **7/7 pass, 0 reverts, 0 discards**.
-  `handler_deposit` was called ~21,000 times per invariant, confirming the deposit path
+  the deposit handler was called ~21,000 times per invariant, confirming the deposit path
   participates meaningfully in the fuzzer's call distribution.
 
 ## Hypotheses generated
@@ -61,17 +61,17 @@ entrance-fee settlement); cross-component share conservation across deposit and 
 
 ## AI usage
 
-* Read source files and traced the deposit flow (`[redacted]`, `[redacted]`).
-* Wrote both modified files (`[redacted].sol`, `[redacted].t.sol`).
+* Read source files and traced the deposit flow (the sync-deposit handler, the fee handler).
+* Wrote both modified files (the redeem-queue handler, the redeem-queue invariant suite).
 * Drafted this journal entry.
 
 ## Human verification
 
-* Reviewed `[redacted].__deposit` and `[redacted].[redacted]` directly
-  before designing `handler_deposit` — the try/catch scope and try/catch rationale are grounded
-  in the actual revert paths (`ZeroShares` guard).
-* Verified that fee shares are NOT minted by tracing `[redacted]` in `[redacted]` —
-  confirmed `shares.[redacted]` is never called on the fee recipient's behalf.
+* Reviewed the deposit internal and the fee-settlement internal directly
+  before designing the deposit handler — the try/catch scope and try/catch rationale are grounded
+  in the actual revert paths (a zero-shares revert guard).
+* Verified that fee shares are NOT minted by tracing the value-owed increment internal in the fee handler —
+  confirmed the shares mint is never called on the fee recipient's behalf.
 * Ran the suite end-to-end locally and inspected the call-distribution table before recording
   results as passing.
 * Checked that `INV-CROSS-01` comment correctly states the no-mint property of the entrance fee.
@@ -84,7 +84,7 @@ entrance-fee settlement); cross-component share conservation across deposit and 
   the invariant would require iterating over fee recipients too — a broader tracking surface.
 * When extending a Foundry invariant handler to cover a new protocol action, the most common
   pitfall is missing a guard that causes the action to revert silently and reduces coverage.
-  For `handler_deposit`, refreshing both the asset rate and the last share value before calling
+  For the deposit handler, refreshing both the asset rate and the last share value before calling
   the deposit ensures the action always reaches the fee and mint logic, not just the validation
   reverts.
 

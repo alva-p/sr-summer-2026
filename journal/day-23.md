@@ -49,7 +49,7 @@ value conversions studied on Day 22.
 * New fuzz test (exit-fee split, no share leak and no value leak): 10,000 runs, 0 failures.
 * New boundary test (fee rounds to zero below the `10000 / feeBps` threshold, nonzero at it):
   pass.
-* Full [redacted] unit suite: 8/8 pass.
+* Full the value-helpers library unit suite: 8/8 pass.
 * Full invariant suite: 7/7 pass, 0 reverts, 0 discards (unchanged from the Day 21/22 baseline).
 * Forced clean build: successful, no warnings.
 
