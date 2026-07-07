@@ -59,7 +59,7 @@ recipient-change edge case were reasoned about but never fuzzed.
 ## Hypotheses generated
 
 * None. The fee accounting held under the decrease path and under mid-flight recipient rotation,
-  confirming that `[redacted]` only repoints the recipient and never touches value already owed, and
+  confirming that the exit-fee setter only repoints the recipient and never touches value already owed, and
   that claim and accrual keep total owed exactly reconciled with per-recipient owed.
 
 ## Hypotheses discarded
@@ -80,7 +80,7 @@ recipient-change edge case were reasoned about but never fuzzed.
 * Traced the claim path by hand: the protocol decreases per-recipient and total owed by the same
   delta and guards over-claim by underflow revert, so bounding the claimed value to owed can never
   drive either below zero.
-* Verified the rotation path leaves prior owed untouched: `[redacted]` overwrites only the recipient
+* Verified the rotation path leaves prior owed untouched: the exit-fee setter overwrites only the recipient
   pointer, so the sum-equals-total invariant is what would catch any loss or duplication.
 * Confirmed each new assertion bites: an asymmetric decrease, or a rotation that moved owed value,
   would break INV-FEE-02 or INV-FEE-03, so the green result is meaningful and not vacuous.
