@@ -58,7 +58,7 @@ investigate adversarial scenarios; validate or discard hypotheses; update the AI
 
 | Metric | Total |
 |---|---|
-| Research minutes | ~600 (five sessions at ~2h) |
+| Research minutes | ~400 (five sessions) |
 | Learning minutes | 0 |
 | Community minutes | 0 |
 | Contracts read (new) | The signed linear write-down tracker, the sibling live-balance position component, and the conversion layer; plus re-reads of the batch execute loop and the fee aggregate |
