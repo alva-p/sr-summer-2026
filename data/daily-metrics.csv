@@ -42,3 +42,4 @@ date,research_minutes,learning_minutes,community_minutes,contracts_read,tests_wr
 2026-07-20,80,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,A quality checkpoint collapses duplicate hypotheses into a few distinct facts; reproducing the suite from a clean clone is the cheapest and most-skipped evidence box.
 2026-07-21,90,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,An in-scope asset is only the first report gate; trusted-role assumptions and absent attacker impact can independently make a clear no-submit decision.
 2026-07-22,90,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,A green suite in a dirty working tree is runnable but not portable; reproducibility requires the exact test diff and toolchain as well as the command output.
+2026-07-23,90,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,Reproducibility is its own deliverable: pin the test diff and toolchain and prove the suite runs from a clean checkout, not just that it is green in place.
