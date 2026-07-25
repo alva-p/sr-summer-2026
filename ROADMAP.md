@@ -106,23 +106,37 @@ process and goals in general terms.
 
 ## Week 7 (July 27-31)
 
-**Goal:** close the first long sprint and decide the next target.
+**Goal:** close out the opportunistic target picked up at the end of Week 6 and formally decide the
+second target.
 
-* Technical retrospective on the primary target.
-* Evaluate depth reached.
-* Record what worked and what didn't.
-* Improve templates.
-* Update the AI-assisted workflow.
-* Decide: continue with a second surface on the primary target, move to the secondary target, or
-  pick another target via the matrix.
-* Prepare onboarding for the second sprint.
+* Finish the ledger/core (blockchain/DLT) component review deferred from the end of Week 6.
+* Resolve the blocked PoC (confirm/pin a working dependency version for the affected test harness)
+  and execute the deferred hypothesis.
+* Run the surviving candidates through the [PoC quality gate](methodology/poc-quality-gate.md) and
+  [report quality gate](methodology/report-quality-gate.md); submit only what clears the bar, write
+  up the rest as documented hardening notes if they don't.
+* Decide formally: this opportunistic target becomes the second target for Weeks 8-9, and the
+  lending/credit-delegation surface started at Day 42-43 is **parked, not abandoned**, at its Day 43
+  state (architecture map + first invariant already committed).
+* Technical retrospective comparing the two onboarding experiences (EVM/lending-style vs.
+  DAG-ledger + autonomous-agent-style) as input for Week 8 planning.
+* Update the AI-assisted workflow notes.
 
 ## Week 8 (August 3-7)
 
-**Goal:** architecture of the second target.
+**Goal:** depth on the second target — contingent on what Week 7 leaves open.
 
-If the second target involves lending and credit delegation:
+If the opportunistic target still has open, promising surface after Week 7 (e.g. asset/component
+areas flagged but deprioritized under time budget):
 
+* Pick the next-highest-signal surface within it.
+* Build its architecture map and a scope lock for it.
+* Record external assumptions and trust boundaries.
+* Define initial invariants.
+
+If the opportunistic target is exhausted (Week 7 submission, if any, was the ceiling):
+
+* Resume the parked lending/credit-delegation surface from its Day 43 state.
 * Understand the credit delegation model.
 * Map external lending integrations and intermediate vaults.
 * Identify collateral, debt and liquidations.
@@ -133,13 +147,13 @@ If the second target involves lending and credit delegation:
 
 ## Week 9 (August 10-14)
 
-**Goal:** tests for the second target.
+**Goal:** tests for whichever surface Week 8 continued.
 
-* Review deposits and withdrawals.
+* Review deposits and withdrawals (or the equivalent value-in/value-out flow for a non-EVM target).
 * Analyze solvency.
-* Study liquidations.
-* Review oracles.
-* Analyze credit limits.
+* Study liquidations (where applicable).
+* Review oracles or equivalent external-price/rate dependencies.
+* Analyze credit or exposure limits.
 * Implement unit tests, fuzzing or invariants.
 * Compare this process with the first target.
 
